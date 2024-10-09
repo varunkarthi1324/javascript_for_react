@@ -159,11 +159,23 @@ const {
 } = book;
 console.log(title, author, genres);
 
-const [primarygenre, secondarygenre] = genres;
-/*
-const primarygenre = genres[0];
-const secondarygenre = genres[1];
-*/
-console.log(primarygenre, secondarygenre);
+//rest operator
+const [primarygenre, secondarygenre, ...Othergenre] = genres;
+
+console.log(primarygenre, secondarygenre, Othergenre);
+
+//spread operator
+const newgenre = ["epic fantasy", ...genres];
+newgenre;
+
+const updateBook = { moviePublicationDate: "2001-12-19",...book};
+updateBook;
+
+const summary= `${title}, a ${pages} a book,written by ${author} which is published in ${publicationDate.split("-")[0]},the book is adapted from ${hasMovieAdaptation?"":"nothing"}`;
+summary;
+
+const range=pages>1000 ?'over a thousand':'less than thousand';
+console.log(`the book has ${range}`)
+console.log(summary)
 
 //in vs code use quokka for better experience
