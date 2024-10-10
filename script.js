@@ -168,14 +168,40 @@ console.log(primarygenre, secondarygenre, Othergenre);
 const newgenre = ["epic fantasy", ...genres];
 newgenre;
 
-const updateBook = { moviePublicationDate: "2001-12-19",...book};
+const updateBook = { moviePublicationDate: "2001-12-19", ...book };
 updateBook;
 
-const summary= `${title}, a ${pages} a book,written by ${author} which is published in ${publicationDate.split("-")[0]},the book is adapted from ${hasMovieAdaptation?"":"nothing"}`;
+// function getyear(str) {
+//   return str.split("-")[0];
+// }
+const getyear = (str) => str.split("-")[0];
+
+const summary = `${title}, a ${pages} a book,written by ${author} which is published in ${getyear(
+  publicationDate
+)},the book is adapted from ${hasMovieAdaptation ? "" : "nothing"}`;
 summary;
 
-const range=pages>1000 ?'over a thousand':'less than thousand';
-console.log(`the book has ${range}`)
-console.log(summary)
+const range = pages > 1000 ? "over a thousand" : "less than thousand";
+console.log(`the book has ${range}`);
+console.log(summary);
 
+//And is for falsy value
+console.log(true && "some string");
+console.log(false && "some string");
+console.log(hasMovieAdaptation && "this book has a movie");
+console.log("jones" && "some string");
+console.log(0 && "some string");
+//or is for true operator
+console.log(true || "some string");
+console.log(false || "some string");
+
+const spanishtrans = book.translations.spanish || "no transalation";
+spanishtrans;
+
+console.log(book.reviews.librarything.reviewsCount);
+const countWrong = book.reviews.librarything.reviewsCount || "no data";
+countWrong;
+
+const count = book.reviews.librarything.reviewsCount ?? "no data";
+console.log(count);
 //in vs code use quokka for better experience
