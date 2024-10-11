@@ -143,8 +143,9 @@ function getBook(id) {
   return data.find((d) => d.id === id);
 }
 
+/*
 //destructuring an array
-const book = getBook(2);
+const book = getBook(3);
 book;
 
 const {
@@ -195,13 +196,102 @@ console.log(0 && "some string");
 console.log(true || "some string");
 console.log(false || "some string");
 
-const spanishtrans = book.translations.spanish || "no transalation";
-spanishtrans;
+// const spanishtrans = book.translations.spanish || "no transalation";
+// spanishtrans;
 
-console.log(book.reviews.librarything.reviewsCount);
-const countWrong = book.reviews.librarything.reviewsCount || "no data";
-countWrong;
+// console.log(book.reviews.librarything.reviewsCount);
+// const countWrong = book.reviews.librarything.reviewsCount || "no data";
+// countWrong;
 
-const count = book.reviews.librarything.reviewsCount ?? "no data";
-console.log(count);
+// const count = book.reviews.librarything.reviewsCount ?? "no data";
+// console.log(count);
+
+// nullish coaleashing operator
+
+function getTotalreview(book) {
+  const goodread = book.reviews?.goodreads?.reviewsCount;
+  const librarything = book.reviews.librarything?.reviewsCount ?? 0;
+  librarything;
+  return goodread + librarything;
+}
+console.log(getTotalreview(book));
+
+//optional chaining
+function getTotalreview(book) {
+  const goodread = book.reviews?.goodreads?.reviewsCount;
+  const librarything = book.reviews.librarything?.reviewsCount ?? 0;
+  librarything;
+  return goodread + librarything;
+}
+
+//mapping
+const books = getBooks();
+const x = [1, 2, 3, 4, 5].map((el) => el * 2);
+console.log(x);
+
+const titles = books.map((book) => book.title);
+titles;
+
+const essentialdata = books.map((book) => ({
+  title: book.title,
+  author: book.author,
+  reviewsCount: getTotalreview(book),
+}));
+
+console.log(essentialdata);
+
+//filter
+const longbooks = books
+  .filter((book) => book.pages > 500)
+  .filter((book) => book.hasMovieAdaptation);
+console.log(longbooks);
+
+const adventurebook = books
+  .filter((books) => books.genres.includes("adventure"))
+  .map((book) => book.title);
+
+adventurebook;
+
+// reduce
+const pagesAllBooks = books.reduce((sum, book) => sum + book.pages, 0);
+pagesAllBooks;
+
+//sort
+const arr = [5, 2, 7, 6, 1, 3];
+const des_sorted = arr.slice().sort((a, b) => b - a);
+const sorted = arr.slice().sort((a, b) => a - b);
+console.log(sorted);
+console.log(des_sorted);
+
+const sorted_pages = books.slice().sort((a, b) => a.pages - b.pages);
+sorted_pages;
+
+//working with immutable array
+const newbook = {
+  id: 6,
+  title: "love life",
+  author: "anonymous",
+};
+
+const booksAfterAdd = [...books, newbook];
+booksAfterAdd;
+
+const booksAfterDelete = booksAfterAdd.filter((book) => book.id !== 3);
+booksAfterDelete;
+
+const booksAfterUpdate = booksAfterDelete.map((book) =>
+  book.id === 1 ? { ...book, pages: 12 } : book
+);
+booksAfterUpdate;
+map-update,filter-delete,split-new element
+
 //in vs code use quokka for better experience
+*/
+
+fetch("https://jsonplaceholder.typicode.com/todos").then();
+
+console.log(
+  fetch("https://jsonplaceholder.typicode.com/todos")
+    .then((res) => res.json())
+    .then((data) => console.log(data))
+);
