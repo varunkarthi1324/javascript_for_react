@@ -288,10 +288,18 @@ map-update,filter-delete,split-new element
 //in vs code use quokka for better experience
 */
 
-fetch("https://jsonplaceholder.typicode.com/todos").then();
+//async fn and await
 
-console.log(
-  fetch("https://jsonplaceholder.typicode.com/todos")
-    .then((res) => res.json())
-    .then((data) => console.log(data))
-);
+// console.log(
+//   fetch("https://jsonplaceholder.typicode.com/todos")
+//     .then((res) => res.json())
+//     .then((data) => console.log(data))
+// );
+
+async function getTodos() {
+  const res = await fetch("https://jsonplaceholder.typicode.com/todos");
+  const data = await res.json();
+  console.log(data);
+  return data;
+}
+console.log(getTodos());
